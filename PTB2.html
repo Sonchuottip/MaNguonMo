@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giải Phương Trình Bậc 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .input-row input {
+            width: 30%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .button {
+            background-color: #ff7f00;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #e67000;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Giải Phương Trình Bậc 2</h1>
+        <div class="input-row">
+            <input type="number" id="a" placeholder="Nhập a">
+            <input type="number" id="b" placeholder="Nhập b">
+            <input type="number" id="c" placeholder="Nhập c">
+        </div>
+        <button class="button" onclick="solveQuadratic()">Giải Phương Trình</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                document.getElementById('result').innerText = 'Vui lòng nhập đủ giá trị a, b, c';
+                return;
+            }
+
+            if (a === 0) {
+                document.getElementById('result').innerText = 'Đây không phải phương trình bậc 2';
+                return;
+            }
+
+            const delta = b * b - 4 * a * c;
+            let result = '';
+
+            if (delta < 0) {
+                result = 'Phương trình vô nghiệm';
+            } else if (delta === 0) {
+                const x = -b / (2 * a);
+                result = `Phương trình có nghiệm kép: x = ${x}`;
+            } else {
+                const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                result = `Phương trình có 2 nghiệm phân biệt: x₁ = ${x1}, x₂ = ${x2}`;
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
